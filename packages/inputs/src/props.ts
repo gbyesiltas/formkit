@@ -399,11 +399,13 @@ export interface FormKitSelectSlots<Props extends FormKitInputs<Props>>
  * The slots available to the checkbox inputs even when options are not provided, these extend the base slots.
  * @public
  */
-export interface FormKitCheckboxSlots<Props extends FormKitInputs<Props>>
-  extends FormKitBaseSlots<Props> {
+export type FormKitCheckboxSlots<Props extends FormKitInputs<Props>> =  FormKitBaseSlots<Props> &{
   decorator: FormKitSlotData<Props, OptionSlotData<Props>>
   decoratorIcon: FormKitSlotData<Props, OptionSlotData<Props>>
-}
+} & Props['multiple'] extends 'true' | true ? {
+  fieldset: FormKitSlotData<Props>
+  legend: FormKitSlotData<Props> ,
+} : {}
 
 /**
  * The slots available to the radio and checkbox inputs when options are
